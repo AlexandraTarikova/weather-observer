@@ -1,6 +1,6 @@
 import './App.css';
 import React, {useState} from 'react';
-import { Routes, useParams, Route, Link } from "react-router-dom";
+import {Routes, useParams, Route, Link, Navigate} from "react-router-dom";
 import ObservationPointPlate from "./components/ObservationPointPlate/ObservationPointPlate";
 import HomePage from "./pages/HomePage/HomePage";
 import CreateObservation from "./pages/CreateObservation/CreateObservation";
@@ -51,6 +51,7 @@ function App() {
         <Route path="/observations" element={<ObservationPointsListPage />} />
         <Route path="/create_observation" element={<CreateObservation observationPoints={observationPoints} />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/" element={<Navigate to="/home" />} />
       </Routes>
     </div>
   );
