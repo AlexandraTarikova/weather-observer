@@ -29,14 +29,17 @@ const observationSummary = {
 }
 
 app.get('/observationPoints', function (req, res) {
+  res.set('Content-Type', 'application/json');
   res.end(JSON.stringify(observationPoints));
 })
 
 app.get('/observationSummary', function (req, res) {
+  res.set('Content-Type', 'application/json');
   res.end(JSON.stringify(observationSummary));
 })
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
 });
+
 

@@ -53,7 +53,7 @@ function App() {
   console.log('---App observationSummary: ', observationSummary);
   console.log('---App observationPoints: ', observationPoints);
   useEffect(() => {
-    fetch(`/observationPoints`)
+    fetch(`${url}/observationPoints`)
       .then(response => response.json())
       .then(data =>
       {
@@ -61,7 +61,7 @@ function App() {
         console.log(data);
         setObservationPoints(data.data);
       });
-    fetch(`/observationSummary`)
+    fetch(`${url}/observationSummary`)
       .then(response => response.json())
       .then(data =>
       {
