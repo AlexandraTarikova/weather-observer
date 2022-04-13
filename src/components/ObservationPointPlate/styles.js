@@ -19,10 +19,6 @@ export const SummaryWrapper = styled.div`
   padding: 8px;
 `
 
-export const TableWrapper = styled.div`
-  width: 100%;
-`
-
 export const Column = styled.div`
   display: flex;
   flex-direction: column;

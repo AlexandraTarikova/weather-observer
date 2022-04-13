@@ -7,16 +7,16 @@ export const Table = styled.table`
   border-collapse: collapse;
   border-radius: 8px;
   overflow: hidden;
-  > tr > td:nth-child(3), > tr > th:nth-child(3) {
+  tr > td:nth-child(3), tr > th:nth-child(3) {
     text-align: right;
   }
-  > tr:nth-child(2n) {
+  tr:nth-child(2n) {
     background: #cccccc;
   }
-  > tr:nth-child(2n + 1) {
+  tr:nth-child(2n + 1) {
     background: #eeeeee;
   }
-  > tr:nth-child(1) {
+  tr:nth-child(1) {
     background: none;
   }
   th, td {

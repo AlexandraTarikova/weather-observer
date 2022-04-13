@@ -1,32 +1,26 @@
 import React from 'react';
 
-import {Wrapper, SummaryWrapper, TitleColumn, Title, DailyData, TableWrapper} from './styles';
-import ObservationTable from "../ObservationTable/ObservationTable";
+import {Wrapper, SummaryWrapper, TitleColumn, Title, DailyData} from './styles';
 
-const ObservationPointPlate = (props) => {
-  console.log(props);
+const ObservationPointPlate = ({withSummary = false, name, observationSummary = {}}) => {
   return (
     <Wrapper>
       <SummaryWrapper>
         <TitleColumn>
-          <Title>{props.name}</Title>
-          <div>{props.observationSummary?.latest}℃</div>
+          <Title>{name}</Title>
+          {withSummary && <div>{observationSummary.latest}℃</div>}
         </TitleColumn>
-        <DailyData>
-          <div>max: {props.observationSummary?.max}℃</div>
-          <div>avg: {props.observationSummary?.avg}℃</div>
-          <div>min: {props.observationSummary?.min}℃</div>
-        </DailyData>
+        { withSummary &&
+          <DailyData>
+            <div>max: {observationSummary.max}℃</div>
+            <div>avg: {observationSummary.avg}℃</div>
+            <div>min: {observationSummary.min}℃</div>
+          </DailyData>
+        }
       </SummaryWrapper>
-      {
-        props.expanded && <TableWrapper><ObservationTable /></TableWrapper>
-      }
     </Wrapper>
   )
 };
 
 export default ObservationPointPlate;
 
-ObservationPointPlate.defaultProps = {
-  expanded: false,
-};

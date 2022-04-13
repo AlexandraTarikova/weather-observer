@@ -9,14 +9,19 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   font-size: 24px;
-  background: #cccccc;
 `
 
 export const ButtonStyled = styled.button`
   width: 100%;
   line-height: 60px;
+  background: #cccccc;
+  :disabled {
+    opacity: 0.1;
+    pointer-events: none;
+  }
 `
 export const LinkStyled = styled(Link)`
+  background: #cccccc;
   width: 100%;
   line-height: 60px;
 `
