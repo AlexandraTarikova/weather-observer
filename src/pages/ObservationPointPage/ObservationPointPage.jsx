@@ -3,10 +3,10 @@ import {useParams} from "react-router-dom";
 import BottomBar from "../../components/BottomBar/BottomBar";
 import ObservationPointPlate from "../../components/ObservationPointPlate/ObservationPointPlate";
 import ObservationTable from "../../components/ObservationTable/ObservationTable";
-import {TableWrapper} from "./styles";
+import {Wrapper, TableWrapper} from "./styles";
 
 
-const ObservationPointPage = ({database, observationPoints = [], observationSummary = {}}) => {
+const ObservationPointPage = ({database, observationPoints = [], preferredUnit = 'C'}) => {
   const { id } = useParams();
   const [observations, setObservations] = useState([]);
   const [summary, setSummary] = useState({});
@@ -42,18 +42,19 @@ const ObservationPointPage = ({database, observationPoints = [], observationSumm
   const bottomBarButtons = [
     {type: 'link', text: 'Back', props: {to: '/observations'}},
   ];
-  return <>
-    <BottomBar buttons={bottomBarButtons}/>
+  return <Wrapper>
     <ObservationPointPlate
       { ...{
         withSummary: true,
         observationSummary: summary,
+        preferredUnit: preferredUnit,
         observations: [].concat(observations).reverse(),
         ...observationPoints.find(elem => elem.id === id)
       }}
     />
-    <TableWrapper><ObservationTable observations={observations}/></TableWrapper>
-  </>
+    <TableWrapper><ObservationTable observations={observations} preferredUnit={preferredUnit}/></TableWrapper>
+    <BottomBar buttons={bottomBarButtons}/>
+  </Wrapper>
 }
 
 export default ObservationPointPage;

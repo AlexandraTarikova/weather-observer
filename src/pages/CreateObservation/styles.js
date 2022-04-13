@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -7,6 +6,10 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-bottom: 60px;
+  @media screen and (min-width: 576px) {
+    display: inline-block;
+  }
 `
 
 export const Text = styled.div`
@@ -30,8 +33,14 @@ export const Option = styled.div`
   }
 `
 
+export const SubmitWrapper = styled.div`
+  @media screen and (min-width: 576px) {
+    display: flex;
+  }
+`
+
 export const InputWrapper = styled.div`
-  width: 30%;
+  //width: 30%;
   height: 60px;
   display: flex;
   font-size: 36px;

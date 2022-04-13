@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { Table } from './styles';
+import {trasformUnits, getUnitSymbol} from '../../utils';
 
-const ObservationTable = ({observations = []}) => {
+const ObservationTable = ({preferredUnit = 'C', observations = []}) => {
   return <Table>
     <tbody>
       <tr>
@@ -16,7 +17,7 @@ const ObservationTable = ({observations = []}) => {
             return <tr key={observation.time}>
               <td>{observationTime.getDate()}.{observationTime.getMonth()}.{observationTime.getFullYear()}</td>
               <td>{observationTime.getHours()}:{observationTime.getMinutes()}</td>
-              <td>{observation.temp}℃</td>
+              <td>{trasformUnits({num: observation.temp, to: preferredUnit})}{getUnitSymbol(preferredUnit)}</td>
             </tr>
           }
         )

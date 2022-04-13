@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import ObservationPointPage from "./pages/ObservationPointPage/ObservationPointPage";
 import ObservationPointsListPage from "./pages/ObservationPointsListPage/ObservationPointsListPage";
 import CreateObservation from "./pages/CreateObservation/CreateObservation";
+import UnitToggle from "./components/UnitToggle/UnitToggle";
 
 import firebase from "firebase/app";
 import { getDatabase, ref, set } from "firebase/database";
@@ -20,33 +21,47 @@ const firebaseConfig = {
 };
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const database = firebaseApp.database();
+import {Wrapper, ToggleWrapper} from './styles';
 
 function App() {
   const [observationPoints, setObservationPoints] = useState([]);
+  const [preferredUnit, setPreferredUnit] = useState('C');
+  const onUnitToggle = (id) => setPreferredUnit(id);
   useEffect(() => {
     database.ref().child('ObservationPoints').once('value').then((data) => {
-      setObservationPoints(data.val());
+      const newArr = [].concat(data.val()).sort((point1, point2) => point1.name < point2.name);
+      setObservationPoints(newArr);
     });
   }, []);
 
   return (
     <div className="App" style={{width: '100vw', padding: '8px'}}>
-      <Routes>
-        <Route path="/observations/:id" element={
-          <ObservationPointPage
-            observationPoints={observationPoints}
-            database={database}
+      <Wrapper>
+        <ToggleWrapper><UnitToggle onToggle={onUnitToggle} selected={preferredUnit}/></ToggleWrapper>
+        <Routes>
+          <Route path="/observations/:id" element={
+            <ObservationPointPage
+              observationPoints={observationPoints}
+              preferredUnit={preferredUnit}
+              database={database}
+            />
+          }/>
+          <Route path="/observations" element={
+            <ObservationPointsListPage
+              observationPoints={observationPoints}
+            />
+          }/>
+          <Route path="/create_observation" element={
+            <CreateObservation
+              observationPoints={observationPoints}
+              preferredUnit={preferredUnit}
+              database={database}
+            />}
           />
-        }/>
-        <Route path="/observations" element={
-          <ObservationPointsListPage
-            observationPoints={observationPoints}
-          />
-        }/>
-        <Route path="/create_observation" element={<CreateObservation database={database} observationPoints={observationPoints} />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/" element={<Navigate to="/home" />} />
-      </Routes>
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/" element={<Navigate to="/home" />} />
+        </Routes>
+      </Wrapper>
     </div>
   );
 }
