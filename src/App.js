@@ -15,8 +15,8 @@ import BottomBar from "./components/BottomBar/BottomBar";
 // ];
 
 const data = {};
-const url = 'https://weather-observer.herokuapp.com';
-//const url = 'http://localhost:3000';
+//const url = 'https://weather-observer.herokuapp.com';
+const url = 'http://localhost:3000';
 
 const ObservationPointsListPage = ({observationPoints = [], observationSummary = {}}) => {
   console.log('---ObservationPointsListPage observationSummary: ', observationSummary);
@@ -53,7 +53,7 @@ function App() {
   console.log('---App observationSummary: ', observationSummary);
   console.log('---App observationPoints: ', observationPoints);
   useEffect(() => {
-    fetch(`${url}/observationPoints`)
+    fetch(`/observationPoints`)
       .then(response => response.json())
       .then(data =>
       {
@@ -61,7 +61,7 @@ function App() {
         console.log(data);
         setObservationPoints(data.data);
       });
-    fetch(`${url}/observationSummary`)
+    fetch(`/observationSummary`)
       .then(response => response.json())
       .then(data =>
       {
