@@ -29,8 +29,7 @@ function App() {
   const onUnitToggle = (id) => setPreferredUnit(id);
   useEffect(() => {
     database.ref().child('ObservationPoints').once('value').then((data) => {
-      const newArr = [].concat(data.val()).sort((point1, point2) => point1.name < point2.name);
-      setObservationPoints(newArr);
+      setObservationPoints(data.val());
     });
   }, []);
 

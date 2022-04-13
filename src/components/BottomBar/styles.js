@@ -21,6 +21,7 @@ export const ButtonStyled = styled.button`
   line-height: 60px;
   border: 1px solid black;
   padding: 0 32px;
+  background: white;
   :disabled {
     opacity: 0.1;
     pointer-events: none;
@@ -31,5 +32,6 @@ export const LinkStyled = styled(Link)`
   line-height: 60px;
   border: 1px solid black;
   padding: 0 32px;
+  background: white;
 `
 

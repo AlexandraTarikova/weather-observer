@@ -20,4 +20,5 @@ export const Plate = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 8px;
 `
