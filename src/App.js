@@ -23,13 +23,9 @@ const database = firebaseApp.database();
 
 function App() {
   const [observationPoints, setObservationPoints] = useState([]);
-  const [observationSummary, setObservationSummary] = useState({});
   useEffect(() => {
     database.ref().child('ObservationPoints').once('value').then((data) => {
       setObservationPoints(data.val());
-    });
-    database.ref().child('ObservationSummary').once('value').then((data) => {
-      setObservationSummary(data.val());
     });
   }, []);
 
@@ -39,14 +35,12 @@ function App() {
         <Route path="/observations/:id" element={
           <ObservationPointPage
             observationPoints={observationPoints}
-            observationSummary={observationSummary}
             database={database}
           />
         }/>
         <Route path="/observations" element={
           <ObservationPointsListPage
             observationPoints={observationPoints}
-            observationSummary={observationSummary}
           />
         }/>
         <Route path="/create_observation" element={<CreateObservation database={database} observationPoints={observationPoints} />} />

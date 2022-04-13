@@ -7,7 +7,7 @@ import BottomBar from "../../components/BottomBar/BottomBar";
 const CreateObservation = ({database, observationPoints}) => {
   let navigate = useNavigate();
   function isNumeric(val) {
-    return val === '' || /^-?\d+$/.test(val);
+    return val === '' || val === '-' || /^-?\d+$/.test(val);
   }
   const [selectedObservationPoint, setObservationPoint] = useState(null);
   const [currentValue, setValue] = useState("");

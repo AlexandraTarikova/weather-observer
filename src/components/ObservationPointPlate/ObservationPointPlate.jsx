@@ -8,13 +8,13 @@ const ObservationPointPlate = ({withSummary = false, name, observationSummary = 
       <SummaryWrapper>
         <TitleColumn>
           <Title>{name}</Title>
-          {withSummary && <div>{observationSummary.latest}℃</div>}
+          {withSummary && <div>{observationSummary.latest || observationSummary.latest === 0 ? `${observationSummary.latest}℃` : 'no data'}</div>}
         </TitleColumn>
         { withSummary &&
           <DailyData>
-            <div>max: {observationSummary.max}℃</div>
-            <div>avg: {observationSummary.avg}℃</div>
-            <div>min: {observationSummary.min}℃</div>
+            <div>max: {observationSummary.max || observationSummary.max === 0 ? `${observationSummary.max}℃` : 'no data'}</div>
+            <div>avg: {observationSummary.avg || observationSummary.avg === 0 ? `${observationSummary.avg}℃` : 'no data'}</div>
+            <div>min: {observationSummary.min || observationSummary.min === 0 ? `${observationSummary.min}℃` : 'no data'}</div>
           </DailyData>
         }
       </SummaryWrapper>

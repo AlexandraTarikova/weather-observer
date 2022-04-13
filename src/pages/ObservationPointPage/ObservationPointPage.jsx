@@ -12,13 +12,16 @@ const ObservationPointPage = ({database, observationPoints = [], observationSumm
   const [summary, setSummary] = useState({});
   useEffect(() => {
     database.ref().child('Observations').child(id).once('value').then((data) => {
+      const observationsObj = data.val();
+      if (observationsObj.length === 0){
+        return;
+      }
       const newObservations = [];
       const recentObservations = [];
-      const obj = data.val();
       const timeStampNow = Math.round(new Date().getTime() / 1000);
       const timeStampYesterday = timeStampNow - (24 * 3600);
-      for (const key in obj){
-        const observation = obj[key];
+      for (const key in observationsObj){
+        const observation = observationsObj[key];
         newObservations.push(observation)
         const then = new Date(observation.time);
         const isRecent = then >= new Date(timeStampYesterday*1000).getTime();
@@ -26,10 +29,10 @@ const ObservationPointPage = ({database, observationPoints = [], observationSumm
           recentObservations.push(observation.temp);
         }
       }
-      newObservations.sort((observation1, observation2) => (new Date(observation1.time)) - (new Date(observation2.time)))
+      newObservations.sort((observation1, observation2) => (new Date(observation2.time)) - (new Date(observation1.time)))
       setObservations(newObservations);
       setSummary({
-        latest: newObservations[0].temp,
+        latest: `${newObservations[0]?.temp}` || null,
         max: Math.max(...recentObservations),
         avg: Math.round(recentObservations.reduce((a,b) => a + b, 0) / recentObservations.length),
         min: Math.min(...recentObservations),

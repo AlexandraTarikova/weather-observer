@@ -3,7 +3,7 @@ import ObservationPointPlate from "../../components/ObservationPointPlate/Observ
 import BottomBar from "../../components/BottomBar/BottomBar";
 import React from "react";
 
-const ObservationPointsListPage = ({observationPoints = [], observationSummary = {}}) => {
+const ObservationPointsListPage = ({observationPoints = []}) => {
   const bottomBarButtons = [
     {type: 'link', text: 'Back', props: {to: '/home'}},
   ];
@@ -11,7 +11,7 @@ const ObservationPointsListPage = ({observationPoints = [], observationSummary =
     {
       observationPoints.map((point) =>
         (<Link to={`/observations/${point.id}`} key={point.id} >
-          <ObservationPointPlate { ...{expanded: false, observationSummary: observationSummary[point.id], ...point}}/>
+          <ObservationPointPlate { ...{withSummary: false, ...point}}/>
         </Link>))
     }
     <BottomBar buttons={bottomBarButtons}/>

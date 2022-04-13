@@ -24,6 +24,7 @@ export const Option = styled.div`
   margin: 4px 0;
   font-size: 36px;
   opacity: ${({selected}) => selected ? 1 : 0.5};
+  border-radius: 8px;
   &:last-child {
     margin-bottom: 20px;
   }

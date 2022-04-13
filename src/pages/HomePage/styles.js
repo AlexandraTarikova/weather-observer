@@ -12,8 +12,11 @@ export const Wrapper = styled.div`
 export const Plate = styled(Link)`
   width: 100%;
   height: 160px;
-  line-height: 160px;
   margin: 8px 0;
-  background: #cccccc;
   font-size: 36px;
+  border: 1px solid black;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
