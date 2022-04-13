@@ -10,12 +10,12 @@ const ObservationPointPlate = (props) => {
       <SummaryWrapper>
         <TitleColumn>
           <Title>{props.name}</Title>
-          <div>{props.observation?.latest}℃</div>
+          <div>{props.observationSummary?.latest}℃</div>
         </TitleColumn>
         <DailyData>
-          <div>max: {props.observation?.max}℃</div>
-          <div>avg: {props.observation?.avg}℃</div>
-          <div>min: {props.observation?.min}℃</div>
+          <div>max: {props.observationSummary?.max}℃</div>
+          <div>avg: {props.observationSummary?.avg}℃</div>
+          <div>min: {props.observationSummary?.min}℃</div>
         </DailyData>
       </SummaryWrapper>
       {
@@ -28,12 +28,5 @@ const ObservationPointPlate = (props) => {
 export default ObservationPointPlate;
 
 ObservationPointPlate.defaultProps = {
-  expanded: true,
-  name: 'Moscow',
-  observation: {
-    latest: 20,
-    max: 30,
-    avg: 23,
-    min: 20,
-  }
+  expanded: false,
 };

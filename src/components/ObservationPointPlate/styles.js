@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
-  //border: 1px solid black;
+  border: 1px solid black;
   border-radius: 8px;
   margin: 8px 0;
   
-  color: white;
-  background: rgb(67,111,225);
+  //color: white;
+  //background: rgb(67,111,225);
 `
 
 export const SummaryWrapper = styled.div`
