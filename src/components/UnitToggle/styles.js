@@ -18,4 +18,5 @@ export const Option = styled.div`
   align-items: center;
   flex: 1;
   opacity: ${p => p.selected ? 1 : 0.5};
+  cursor: pointer;
 `
